@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 
 /** The gathering places that already exist. pwsh.ca points at them; it does
- *  not try to replace any of them. */
-const PLACES: {
+ *  not try to replace any of them.
+ *
+ *  A place usually has one destination, and then the whole card is the link.
+ *  `links` is for the case where one heading honestly covers several — the
+ *  conferences are siblings, not rivals, and giving each its own card would
+ *  imply a choice nobody has to make. */
+type Place = {
   name: string;
-  href: string;
   what: string;
-}[] = [
+  href?: string;
+  links?: { name: string; href: string }[];
+};
+
+const PLACES: Place[] = [
   {
     name: "PowerShell on GitHub",
     href: "https://github.com/PowerShell/PowerShell",
@@ -33,9 +41,12 @@ const PLACES: {
     what: "Long-form problems, war stories, and the weekly script showcase.",
   },
   {
-    name: "PSConfEU",
-    href: "https://psconf.eu/",
-    what: "The community conference, in person, every spring.",
+    name: "The conferences",
+    what: "Two of them, both in person, both worth the flight: PSConf EU each June in Wiesbaden, and PowerShell Summit each April in North America.",
+    links: [
+      { name: "PSConf EU", href: "https://psconf.eu/" },
+      { name: "PowerShell Summit", href: "https://www.powershellsummit.org/" },
+    ],
   },
 ];
 
@@ -130,21 +141,44 @@ export default function Home() {
         </header>
         <ul className="place-grid">
           {PLACES.map((place) => (
-            <li key={place.href}>
-              <a
-                className="place-card"
-                href={place.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <h3>
-                  {place.name}
-                  <span className="place-arrow" aria-hidden="true">
-                    ↗
-                  </span>
-                </h3>
-                <p>{place.what}</p>
-              </a>
+            <li key={place.name}>
+              {place.href ? (
+                <a
+                  className="place-card"
+                  href={place.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h3>
+                    {place.name}
+                    <span className="place-arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </h3>
+                  <p>{place.what}</p>
+                </a>
+              ) : (
+                /* Several destinations, so the card itself is not clickable —
+                   a whole-card hover would promise a single target it does
+                   not have. The links carry their own affordance. */
+                <div className="place-card place-card-multi">
+                  <h3>{place.name}</h3>
+                  <p>{place.what}</p>
+                  <p className="place-links">
+                    {place.links?.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link.name}
+                        <span aria-hidden="true"> ↗</span>
+                      </a>
+                    ))}
+                  </p>
+                </div>
+              )}
             </li>
           ))}
         </ul>

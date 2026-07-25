@@ -559,7 +559,10 @@ pre {
     background-color 0.15s var(--ease-out);
 }
 
-.place-card:hover {
+/* Only a card that IS a link lights up as one. The multi-destination card
+   below is a container, and a whole-card hover would promise a single target
+   it doesn't have. */
+a.place-card:hover {
   border-color: var(--accent);
   background: var(--accent-wash);
 }
@@ -578,13 +581,39 @@ pre {
   font-size: var(--text-micro);
 }
 
-.place-card:hover .place-arrow {
+a.place-card:hover .place-arrow {
   color: var(--accent-ink);
 }
 
 .place-card p {
   color: var(--ink-muted);
   font-size: var(--text-small);
+}
+
+/* The card holding several destinations. Its links sit in a row at the foot,
+   pushed down so the card still bottoms out level with its neighbours. */
+.place-card-multi {
+  display: flex;
+  flex-direction: column;
+}
+
+.place-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: auto;
+  padding-top: var(--space-snug);
+}
+
+.place-links a {
+  font-weight: 700;
+  font-size: var(--text-label);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.place-links a:hover {
+  text-decoration: underline;
 }
 
 .plan-list {
