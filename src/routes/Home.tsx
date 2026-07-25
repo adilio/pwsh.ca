@@ -71,7 +71,7 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">Community placeholder · v0</p>
+          <p className="eyebrow">PowerShell Community site · v0</p>
           <h1>
             A home for the open-source
             <br />
