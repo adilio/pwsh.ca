@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production builds
+dist/
+build/
+.output/
+
+# Environment
+.env
+.env.local
+.env.production
+.dev.vars
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Cloudflare
+.wrangler/
+worker-configuration.d.ts
+
+# Misc
+.cache/
+.turbo/
+
+# Netlify
+.netlify/
+deno.lock
+
+# Impeccable live-mode session journals (local state; config.json is committed)
+.impeccable/live/sessions/

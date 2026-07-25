@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pwsh.ca · a home for the open-source PowerShell community</title>
+    <meta
+      name="description"
+      content="pwsh.ca is a community-run home for open-source PowerShell: the places the community gathers, the things it builds, and short links that point at them."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f3f5fa" />
+    <script>
+      // Resolve the theme before first paint: a saved choice wins, otherwise
+      // the OS decides. Without this the page flashes the wrong ground.
+      (function () {
+        var pref = "system";
+        try {
+          pref = localStorage.getItem("pwsh-theme") || "system";
+        } catch (e) {}
+        var dark =
+          pref === "dark" ||
+          (pref !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        if (dark) {
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute("content", "#0b1220");
+        }
+      })();
+    </script>
+    <meta property="og:title" content="pwsh.ca" />
+    <meta
+      property="og:description"
+      content="A community-run home for open-source PowerShell."
+    />
+    <meta property="og:url" content="https://pwsh.ca/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="pwsh.ca" />
+    <meta
+      name="twitter:description"
+      content="A community-run home for open-source PowerShell."
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
