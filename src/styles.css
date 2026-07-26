@@ -1089,6 +1089,327 @@ input:focus-visible {
   align-items: center;
 }
 
+.link-row-readonly {
+  font-size: var(--text-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.link-row-author {
+  display: block;
+  font-size: var(--text-stamp);
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* ===== Identity, members, keys =========================================== */
+
+textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  width: 100%;
+  min-width: 0;
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+/* The sign-in button is an anchor, so it needs the button box explicitly. */
+.gate-signin {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-top: var(--space-sm);
+}
+
+.gate-actions {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  margin-top: var(--space-sm);
+}
+
+.who {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-label);
+  color: var(--ink-muted);
+}
+
+.who-avatar {
+  border-radius: var(--radius-pill);
+}
+
+.who-role {
+  font-size: var(--text-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-ink);
+  background: var(--accent-wash);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: var(--space-lg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.admin-tab {
+  font: inherit;
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--ink-faint);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: var(--space-sm) 0;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.admin-tab:hover {
+  color: var(--ink);
+}
+
+.admin-tab-active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.panel-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.panel-heading h2 {
+  font-size: var(--text-title);
+}
+
+.panel-heading p {
+  color: var(--ink-faint);
+  font-size: var(--text-label);
+}
+
+.panel-subheading h3 {
+  font-size: var(--text-body);
+  color: var(--ink-muted);
+}
+
+.panel-subheading p {
+  color: var(--ink-faint);
+  font-size: var(--text-label);
+}
+
+.panel-empty {
+  color: var(--ink-faint);
+  font-size: var(--text-small);
+}
+
+.pending-badge {
+  font-size: var(--text-label);
+  color: var(--accent-ink);
+  background: var(--accent-wash);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+.member-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.member-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--paper-raised);
+  padding: var(--space-snug) var(--space-md);
+}
+
+/* A request waiting on a decision gets the accent edge; nothing else does. */
+.member-row-pending {
+  border-color: var(--accent);
+}
+
+.member-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.member-avatar {
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.member-names {
+  display: grid;
+  min-width: 0;
+}
+
+.member-meta {
+  font-size: var(--text-label);
+  color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
+
+.member-reason {
+  flex-basis: 100%;
+  font-size: var(--text-small);
+  color: var(--ink-muted);
+  border-left: 2px solid var(--rule-strong);
+  padding-left: var(--space-sm);
+}
+
+.member-actions {
+  display: flex;
+  gap: var(--space-snug);
+  align-items: center;
+}
+
+.member-status {
+  font-size: var(--text-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+
+/* Role reads as a standing capability, so the two that carry link-management
+   rights get the accent; a plain member stays quiet. */
+.member-role-owner,
+.member-role-admin {
+  color: var(--accent-ink);
+  background: var(--accent-wash);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+}
+
+.member-role-member {
+  color: var(--ink-faint);
+}
+
+.member-status-denied {
+  color: var(--danger);
+}
+
+.key-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: end;
+}
+
+.key-form .field-group {
+  flex: 1 1 240px;
+}
+
+.key-reveal {
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: start;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-lg);
+  background: var(--accent-wash);
+  padding: var(--space-md);
+}
+
+.key-reveal-heading {
+  display: grid;
+  gap: 2px;
+}
+
+.key-reveal-heading span {
+  font-size: var(--text-label);
+  color: var(--ink-muted);
+}
+
+.key-reveal-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  width: 100%;
+}
+
+.key-plaintext {
+  flex: 1 1 280px;
+  font-family: var(--font-code);
+  font-size: var(--text-code);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  overflow-wrap: anywhere;
+}
+
+.key-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.key-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--paper-raised);
+  padding: var(--space-snug) var(--space-md);
+}
+
+.key-row-main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.key-prefix,
+.panel-heading code {
+  font-family: var(--font-code);
+  font-size: var(--text-code);
+  color: var(--ink-faint);
+}
+
+.key-row-meta {
+  font-size: var(--text-label);
+  color: var(--ink-faint);
+}
+
 /* ===== Narrower desks =================================================== */
 
 @media (max-width: 900px) {

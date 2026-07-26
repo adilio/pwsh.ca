@@ -3,6 +3,10 @@ import { getStore } from "@netlify/blobs";
 export interface LinkRecord {
   url: string;
   createdAt: string;
+  /** Actor id of the creator. Absent on links made before attribution existed. */
+  createdBy?: string;
+  /** Denormalized for display, so listing links needs no user lookups. */
+  createdByLogin?: string;
 }
 
 /** The one Blobs store for short links. Strong consistency so that

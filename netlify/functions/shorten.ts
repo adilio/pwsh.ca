@@ -1,4 +1,4 @@
-import { requireAdmin } from "../lib/auth";
+import { isResponse, requireApproved } from "../lib/auth";
 import { generateCode } from "../lib/generator";
 import { err, methodNotAllowed, ok } from "../lib/http";
 import { getLink, setLink } from "../lib/store";
@@ -9,8 +9,8 @@ const MAX_GENERATION_ATTEMPTS = 5;
 /** POST /api/shorten, create a short link (random or custom code). */
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") return methodNotAllowed(["POST"]);
-  const unauthorized = requireAdmin(req);
-  if (unauthorized) return unauthorized;
+  const actor = await requireApproved(req);
+  if (isResponse(actor)) return actor;
 
   let body: { url?: unknown; code?: unknown };
   try {
@@ -50,7 +50,12 @@ export default async function handler(req: Request): Promise<Response> {
     code = generated;
   }
 
-  const record = { url, createdAt: new Date().toISOString() };
+  const record = {
+    url,
+    createdAt: new Date().toISOString(),
+    createdBy: actor.id,
+    createdByLogin: actor.githubLogin,
+  };
   await setLink(code, record);
 
   const origin = new URL(req.url).origin;

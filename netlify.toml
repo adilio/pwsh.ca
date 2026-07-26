@@ -7,6 +7,38 @@
   node_bundler = "esbuild"
 
 # --- API routes (rewrites to functions) -------------------------------------
+# These must all precede the /* catch-all below, or they fall through to the
+# redirect function and 404.
+[[redirects]]
+  from = "/api/auth/*"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/access/*"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/members"
+  to = "/.netlify/functions/members"
+  status = 200
+
+[[redirects]]
+  from = "/api/members/*"
+  to = "/.netlify/functions/members"
+  status = 200
+
+[[redirects]]
+  from = "/api/keys"
+  to = "/.netlify/functions/keys"
+  status = 200
+
+[[redirects]]
+  from = "/api/keys/*"
+  to = "/.netlify/functions/keys"
+  status = 200
+
 [[redirects]]
   from = "/api/shorten"
   to = "/.netlify/functions/shorten"
